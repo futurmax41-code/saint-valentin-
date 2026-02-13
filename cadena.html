@@ -5,16 +5,114 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Chasse aux indices ❤️</title>
 <link rel="stylesheet" href="style.css">
-<script src="script.js"></script>
+<style>
+/* ---- Styles généraux ---- */
+body{
+  margin:0;
+  font-family:'Comic Sans MS', cursive, sans-serif;
+  background: radial-gradient(circle at top,#ffccdd,#ff99cc);
+  color:white;
+  text-align:center;
+  overflow-x:hidden;
+}
+
+h1{
+  font-size:28px;
+  text-shadow:0 0 15px #ff66aa,0 0 30px #ff99cc;
+}
+
+p{
+  font-size:16px;
+  line-height:1.5;
+}
+
+.btn{
+  background: linear-gradient(45deg,#ff99cc,#ff66aa);
+  border:none;
+  border-radius:40px;
+  color:white;
+  padding:15px 30px;
+  margin:10px;
+  text-decoration:none;
+  font-size:16px;
+  box-shadow:0 0 10px #ff66aa;
+  cursor:pointer;
+  transition:0.3s;
+}
+.btn:hover{ transform:scale(1.1); }
+
+.padlock{
+  font-size:80px;
+  margin:20px;
+  transition:0.4s;
+}
+
+.unlock{
+  transform:scale(1.2) rotate(10deg);
+  text-shadow:0 0 20px #ff66aa;
+}
+
+.code{
+  display:flex;
+  gap:12px;
+  justify-content:center;
+  margin:20px;
+}
+
+.num{
+  width:60px;
+  height:60px;
+  border-radius:15px;
+  background:rgba(255,255,255,0.2);
+  backdrop-filter:blur(5px);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:22px;
+  cursor:pointer;
+  box-shadow:0 0 10px #ff66aa;
+}
+
+/* Indices */
+#indices p{
+  font-size:16px;
+  margin:10px;
+}
+
+/* GIF fond */
+.bg-gif{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  z-index:-1;
+  opacity:0.3;
+}
+
+/* Petits éléments kawaii qui tombent */
+.kawaii{
+  position:fixed;
+  top:-30px;
+  font-size:24px;
+  animation:fall linear forwards;
+}
+
+@keyframes fall{
+  to{ transform:translateY(110vh); opacity:0; }
+}
+</style>
 </head>
 <body>
 
+<!-- Fond romantique -->
 <img src="https://media.giphy.com/media/l41lI4bYmcsPJX9Go/giphy.gif" class="bg-gif">
 
-<h1>Pour ouvrir mon cœur 💖</h1>
-<p>Débloque les indices pour deviner le code 🔐</p>
+<h1>💖 Débloque mon cœur 💖</h1>
+<p>Pour ouvrir le cadenas, trouve les 3 indices !</p>
 
-<!-- MENU CHOIX POUR INDICES -->
+<!-- Menu choix pour débloquer les indices -->
 <div style="margin:20px;">
   <p>Choisis comment débloquer un indice :</p>
   <button class="btn" onclick="revealHint('fastfood')">Chercher mon fast-food préféré 🍔</button>
@@ -31,7 +129,7 @@
   <p id="indice3">Indice 3 : 🔒</p>
 </div>
 
-<!-- CADENAS -->
+<!-- Cadenas interactif -->
 <div class="padlock">🔒</div>
 <div class="code">
   <div class="num" onclick="next(this)">0</div>
@@ -44,14 +142,27 @@
 <p id="status"></p>
 
 <script>
+// Variables du jeu
 let unlocked = 0;
-const codeFinal = "5219"; // Code final
+const codeFinal = "5219";
 const hintsUsed = {fastfood:false,famille:false,frere:false};
 
-// Fonction pour débloquer indices
+// Petits éléments kawaii qui tombent
+setInterval(()=>{
+  const symbols=["💖","🌸","🐱","💌","🌷"];
+  const el=document.createElement("div");
+  el.className="kawaii";
+  el.innerHTML=symbols[Math.floor(Math.random()*symbols.length)];
+  el.style.left=Math.random()*100+"vw";
+  el.style.animationDuration=(4+Math.random()*3)+"s";
+  el.style.fontSize=(16+Math.random()*20)+"px";
+  document.body.appendChild(el);
+  setTimeout(()=>el.remove(),7000);
+},300);
+
+// Débloquer indices
 function revealHint(option){
   const status = document.getElementById("hintStatus");
-
   if(option==='fastfood'){
     const answer = prompt("Quel est mon fast-food préféré ? 🍔").toLowerCase().trim();
     if(answer==="tasty crousty" && !hintsUsed.fastfood){
@@ -83,7 +194,7 @@ function revealHint(option){
   }
 
   if(option==='secret'){
-    const answer = prompt("Réponds à la question pour obtenir le code entier : Quel jour de la semaine s’est passé notre premier rendez-vous ?").toLowerCase().trim();
+    const answer = prompt("Quel jour de la semaine s’est passé notre premier rendez-vous ?").toLowerCase().trim();
     if(answer==="mardi"){
       unlocked=3;
       document.getElementById("indice1").textContent="Indice 1 : 5";
@@ -96,7 +207,7 @@ function revealHint(option){
   }
 }
 
-// CADENAS
+// Cadenas
 function next(el){
   let n=parseInt(el.textContent);
   el.textContent=(n+1)%10;
@@ -110,7 +221,7 @@ function checkCode(){
   const status=document.getElementById("status");
   if(code===codeFinal){
     status.textContent="Bravo ! Cadenas ouvert ❤️";
-    status.style.color="#ff99cc";
+    status.style.color="#ff66aa";
     document.querySelector(".padlock").textContent="🔓";
     document.querySelector(".padlock").classList.add("unlock");
     setTimeout(()=>{window.location.href="sorpresa.html"},1500);
