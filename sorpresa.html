@@ -4,68 +4,68 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Pour toi Lena 💖</title>
-<link rel="stylesheet" href="style.css">
 <style>
 body{
   margin:0;
-  font-family:'Comic Sans MS', cursive, sans-serif;
-  background: radial-gradient(circle at top,#ffccdd,#ff99cc);
-  color:white;
+  font-family:Verdana, Geneva, sans-serif;
+  background: linear-gradient(to bottom,#ffe6f0,#ffb3d9);
+  color:#fff;
   text-align:center;
   overflow-x:hidden;
-  padding:20px;
+  padding:30px 10px;
 }
 
 h1{
-  font-size:32px;
-  text-shadow:0 0 15px #ff66aa,0 0 30px #ff99cc;
+  font-size:30px;
+  margin-bottom:20px;
+  color:#ff4da6;
 }
 
 p{
   font-size:18px;
-  line-height:1.6;
-  text-align:center;
+  line-height:1.8;
+  max-width:650px;
   margin:15px auto;
-  max-width:600px;
+  text-shadow: 1px 1px 2px #ff99cc;
 }
+
+.btn{
+  background: linear-gradient(45deg,#ff99cc,#ff66aa);
+  border:none;
+  border-radius:30px;
+  color:white;
+  padding:15px 25px;
+  margin:20px;
+  text-decoration:none;
+  font-size:16px;
+  cursor:pointer;
+  box-shadow:0 0 8px #ff66aa;
+}
+.btn:hover{ transform:scale(1.05); }
 
 .kawaii{
   position:fixed;
   top:-30px;
   font-size:24px;
   animation:fall linear forwards;
+  z-index:0;
 }
 
 @keyframes fall{
   to{ transform:translateY(110vh); opacity:0; }
 }
-
-.btn{
-  background: linear-gradient(45deg,#ff99cc,#ff66aa);
-  border:none;
-  border-radius:40px;
-  color:white;
-  padding:15px 30px;
-  margin:10px;
-  text-decoration:none;
-  font-size:16px;
-  box-shadow:0 0 10px #ff66aa;
-  cursor:pointer;
-  transition:0.3s;
-}
-.btn:hover{ transform:scale(1.1); }
-
 </style>
 </head>
 <body>
 
-<h1>💖 Lena, c’est pour toi 💖</h1>
+<h1>💖 Lena, juste pour toi 💖</h1>
 
 <p>
 slm ma Lena 😘,  
 je voulais pas juste te faire une lettre comme les autres avec des papier la bruhhhhhhhhh… alors j’ai fait ce site rien que pour toi ta captewwwww 💕.<br>
 Chaque chiffre que t’as trouvé, chaque indice, c’est un petit bout de nous 😍.  
 Et là maintenant… voilà ma déclaration finale 💌💖.  
+
 </p>
 
 <p>
@@ -87,18 +87,18 @@ Je t’aimeeeeeeeeee Lena 💖, vraiment fort, et j’espère qu’on continuera
 <button class="btn" onclick="window.location.href='index.html'">Retour à l’accueil 💕</button>
 
 <script>
-// Pluie de kawaii
+// Pluie d’emojis kawaii douce
 setInterval(()=>{
   const symbols=["💖","🌸","🐱","💌","🌷","🐰","✨"];
   const el=document.createElement("div");
   el.className="kawaii";
   el.innerHTML=symbols[Math.floor(Math.random()*symbols.length)];
   el.style.left=Math.random()*100+"vw";
-  el.style.animationDuration=(4+Math.random()*3)+"s";
-  el.style.fontSize=(16+Math.random()*20)+"px";
+  el.style.animationDuration=(5+Math.random()*4)+"s";
+  el.style.fontSize=(18+Math.random()*20)+"px";
   document.body.appendChild(el);
   setTimeout(()=>el.remove(),7000);
-},300);
+},350);
 </script>
 
 </body>
