@@ -1,70 +1,58 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pour toi Lena ❤️</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pour toi ❤️</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <div class="section">
+<div class="section">
 
-    <h1 class="fade">Lena, mon amour ❤️</h1>
+<h1 class="fade">Lena ❤️</h1>
 
-    <p class="fade delay">
-      Si tu es arrivée jusqu’ici,  
-      c’est que tu as ouvert mon cœur 🔓  
-    </p>
+<div class="declaration fade delay">
+  <p>
+    Tu es entrée dans ma vie et tout a changé.  
+    Les jours sont plus beaux,  
+    les moments plus forts,  
+    et mon cœur bat plus vite quand je pense à toi.
+  </p>
 
-    <p class="fade delay2">
-      Et maintenant je veux que tu saches quelque chose…
-    </p>
+  <p>
+    Merci d’être toi.  
+    Merci pour ton sourire.  
+    Merci pour le bonheur que tu m’apportes.
+  </p>
 
-    <!-- GALERIE PHOTOS -->
-    <div class="gallery fade delay2">
-      <div class="photo-card">
-        <img src="images/photo1.jpg">
-        <span>Nous ✨</span>
-      </div>
+  <h2>Je t’aime énormément ❤️</h2>
+</div>
 
-      <div class="photo-card">
-        <img src="images/photo2.jpg">
-        <span>Mon bonheur ❤️</span>
-      </div>
+<div class="gallery fade delay2">
 
-      <div class="photo-card">
-        <img src="images/photo3.jpg">
-        <span>Ma personne préférée 💖</span>
-      </div>
-    </div>
-
-    <!-- DECLARATION -->
-    <div class="declaration fade delay2">
-      <p>
-        Depuis que tu es entrée dans ma vie,  
-        tout est devenu plus beau.  
-      </p>
-
-      <p>
-        Ton sourire me donne la force,  
-        ta voix me rassure,  
-        et ton regard me fait tomber amoureux encore et encore.
-      </p>
-
-      <p>
-        Je ne veux rien d’autre que continuer à créer  
-        des souvenirs avec toi ✨
-      </p>
-
-      <h2>Je t’aime fort Lena ❤️</h2>
-    </div>
-
-    <a href="#" class="btn main fade delay2">Plein de bisous 😘</a>
-
+  <div class="photo-card" onclick="playSound('son1')">
+    <img src="images/photo1.jpg">
+    <span>Clique 🎧</span>
   </div>
 
-  <audio id="music" src="images/musique.mp3" loop></audio>
-  <script src="script.js"></script>
+  <div class="photo-card" onclick="playSound('son2')">
+    <img src="images/photo2.jpg">
+    <span>Clique 🎧</span>
+  </div>
+
+  <div class="photo-card" onclick="playSound('son3')">
+    <img src="images/photo3.jpg">
+    <span>Clique 🎧</span>
+  </div>
+
+</div>
+
+<audio id="son1" src="images/son1.mp3"></audio>
+<audio id="son2" src="images/son2.mp3"></audio>
+<audio id="son3" src="images/son3.mp3"></audio>
+<audio id="music" src="images/musique.mp3" loop></audio>
+
+<script src="script.js"></script>
 </body>
 </html>
