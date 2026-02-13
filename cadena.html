@@ -197,9 +197,16 @@ function revealHint(option){
     const answer = prompt("Quel jour de la semaine s’est passé notre premier rendez-vous ?").toLowerCase().trim();
     if(answer==="mardi"){
       unlocked=3;
+      // Afficher TOUT le code final
       document.getElementById("indice1").textContent="Indice 1 : 5";
       document.getElementById("indice2").textContent="Indice 2 : 2";
       document.getElementById("indice3").textContent="Indice 3 : 1";
+      if(!document.getElementById("indice4")){
+        const newInd = document.createElement("p");
+        newInd.id = "indice4";
+        newInd.textContent = "Indice 4 : 9";
+        document.getElementById("indices").appendChild(newInd);
+      }
       status.textContent="Code entier débloqué ! 🔓";
     } else {
       status.textContent="Non 😘, réfléchis bien !";
