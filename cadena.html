@@ -1,39 +1,55 @@
-<<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mot de passe ❤️</title>
+  <title>Cadenas d'amour 🔐</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body class="center">
 
-  <h1>Mot de passe 🔐</h1>
-  <p>Indice : ton prénom 💖</p>
+  <h1>Déverrouille le cadenas 🔐</h1>
+  <p>Entre les 4 chiffres pour découvrir la surprise ❤️</p>
 
-  <input type="password" id="password" placeholder="Écris ici">
-  <br>
-  <button id="btn" class="btn small">Valider</button>
+  <!-- CADENA -->
+  <div class="lock">
+    <input maxlength="1" class="digit">
+    <input maxlength="1" class="digit">
+    <input maxlength="1" class="digit">
+    <input maxlength="1" class="digit">
+  </div>
+
+  <button id="unlock" class="btn main">Ouvrir 💕</button>
 
   <p id="status"></p>
 
 <script>
-document.getElementById("btn").addEventListener("click", function() {
-  const pass = document.getElementById("password").value.trim().toLowerCase();
+document.getElementById("unlock").addEventListener("click", function(){
+
+  const digits = document.querySelectorAll(".digit");
+  let code = "";
+  digits.forEach(d => code += d.value);
+
+  const correct = "0214"; // ← change si tu veux
+
   const status = document.getElementById("status");
 
-  if(pass === "lena"){
-    status.textContent = "Bienvenue mon amour ❤️";
+  if(code === correct){
+    status.textContent = "Cadenas ouvert mon amour ❤️";
     status.style.color = "#ff99cc";
 
-    setTimeout(function(){
+    // petite animation
+    document.querySelector(".lock").classList.add("open");
+
+    setTimeout(()=>{
       window.location.href = "sorpresa.html";
-    }, 1200);
+    }, 1500);
 
   } else {
-    status.textContent = "Mauvais mot de passe 😢";
+    status.textContent = "Essaie encore 😘";
     status.style.color = "white";
   }
+
 });
 </script>
 
