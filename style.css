@@ -1,0 +1,76 @@
+body{
+  margin:0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: linear-gradient(135deg,#0f0c29,#302b63,#24243e);
+  color:white;
+  overflow-x:hidden;
+}
+
+.center{
+  height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  padding:20px;
+}
+
+.section{
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  padding:20px;
+}
+
+.btn{
+  background: linear-gradient(45deg,#ff4d88,#ff99cc);
+  border-radius:40px;
+  color:white;
+  text-decoration:none;
+  margin:10px;
+  transition:0.3s;
+}
+
+.main{ padding:18px 35px; font-size:18px; }
+.small{ padding:10px 20px; font-size:14px; }
+
+.btn:hover{ transform:scale(1.1); }
+
+input{
+  padding:12px;
+  border-radius:20px;
+  border:none;
+  margin:10px;
+}
+
+.gallery img{
+  width:200px;
+  max-width:80%;
+  margin:10px;
+  border-radius:15px;
+  box-shadow:0 0 15px #ff4d88;
+}
+
+/* animations apparition */
+.fade{ opacity:0; animation:fade 1s forwards; }
+.delay{ animation-delay:1s; }
+.delay2{ animation-delay:2s; }
+
+@keyframes fade{
+  to{ opacity:1; }
+}
+
+/* pluie de coeurs */
+.heart{
+  position:fixed;
+  top:-10px;
+  font-size:20px;
+  animation:fall linear forwards;
+}
+@keyframes fall{
+  to{ transform:translateY(110vh); opacity:0; }
+}
