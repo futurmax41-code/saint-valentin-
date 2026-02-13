@@ -5,27 +5,27 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Chasse au code ❤️</title>
 <link rel="stylesheet" href="style.css">
+<script src="script.js"></script>
 </head>
-<body class="center">
+<body>
+
+<img src="https://media.giphy.com/media/l41lI4bYmcsPJX9Go/giphy.gif" class="bg-gif">
 
 <h1>Pour ouvrir mon cœur 💖</h1>
-<p>Tu as 3 indices à débloquer… mais pour chaque indice, devine mon fast-food préféré 🍔</p>
+<p>Débloque les indices en trouvant mon fast-food préféré 🍔</p>
 
-<!-- JEUX FAST-FOOD -->
-<div style="margin:20px; text-align:center;">
-  <input type="text" id="guess" placeholder="Tape ton idée ici…">
+<div style="margin:20px;">
+  <input type="text" id="guess" placeholder="Ton idée ici…">
   <button class="btn" onclick="checkFood()">Valider</button>
   <p id="foodStatus"></p>
 </div>
 
-<!-- INDICES -->
-<div id="indices" style="margin:20px; color:#ff99cc; text-align:center;">
+<div id="indices">
   <p id="indice1">Indice 1 : 🔒</p>
   <p id="indice2">Indice 2 : 🔒</p>
   <p id="indice3">Indice 3 : 🔒</p>
 </div>
 
-<!-- CADENAS -->
 <div class="padlock">🔒</div>
 <div class="code">
   <div class="num" onclick="next(this)">0</div>
@@ -38,20 +38,10 @@
 <p id="status"></p>
 
 <script>
-// CODE FINAL
-const codeFinal = "5219";
-
-// FAST-FOOD
+const codeFinal = "5219"; 
 const fastFood = "tasty crousty";
 let unlocked = 0;
 
-// CHIFFRES CADENAS
-function next(el){
-  let n = parseInt(el.textContent);
-  el.textContent = (n+1)%10;
-}
-
-// VERIFIER LE NOM DU FAST-FOOD
 function checkFood(){
   const input = document.getElementById("guess").value.toLowerCase().trim();
   const status = document.getElementById("foodStatus");
@@ -63,24 +53,22 @@ function checkFood(){
       document.getElementById("guess").value = "";
     }
     if(unlocked===3){
-      status.textContent = "Tous les indices sont débloqués ! Tu peux maintenant deviner le code 🔐";
+      status.textContent = "Tous les indices sont débloqués ! Devine le code 🔐";
     }
   } else {
     status.textContent = "Essaie encore 😘";
   }
 }
 
-// LES INDICES QUI DONNENT LE CODE
 function getIndice(n){
   switch(n){
-    case 1: return "Indice 1 : Ton fast-food préféré = 5 🍔";
-    case 2: return "Indice 2 : Son magasin préféré = 2 🛍️";
-    case 3: return "Indice 3 : Ta date de naissance = 1/9 🎂";
+    case 1: return "Ind1 : Fast-food préféré = 5 🍔";
+    case 2: return "Ind2 : Magasin préféré = 2 🛍️";
+    case 3: return "Ind3 : Ta date de naissance = 1/9 🎂";
     default: return "";
   }
 }
 
-// VERIFIER LE CADENAS
 function checkCode(){
   const nums=document.querySelectorAll(".num");
   let code="";
