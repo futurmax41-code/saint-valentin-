@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<<!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
@@ -9,13 +9,33 @@
 <body class="center">
 
   <h1>Mot de passe 🔐</h1>
-  <p>Indice : mon prénom préféré 💖</p>
+  <p>Indice : ton prénom 💖</p>
 
   <input type="password" id="password" placeholder="Écris ici">
-  <button onclick="checkPassword()" class="btn small">Valider</button>
+  <br>
+  <button id="btn" class="btn small">Valider</button>
 
   <p id="status"></p>
 
-  <script src="script.js"></script>
+<script>
+document.getElementById("btn").addEventListener("click", function() {
+  const pass = document.getElementById("password").value.trim().toLowerCase();
+  const status = document.getElementById("status");
+
+  if(pass === "lena"){
+    status.textContent = "Bienvenue mon amour ❤️";
+    status.style.color = "#ff99cc";
+
+    setTimeout(function(){
+      window.location.href = "sorpresa.html";
+    }, 1200);
+
+  } else {
+    status.textContent = "Mauvais mot de passe 😢";
+    status.style.color = "white";
+  }
+});
+</script>
+
 </body>
 </html>
