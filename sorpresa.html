@@ -3,22 +3,103 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pour toi ❤️</title>
+<title>Pour toi Lena 💖</title>
 <link rel="stylesheet" href="style.css">
+<style>
+body{
+  margin:0;
+  font-family:'Comic Sans MS', cursive, sans-serif;
+  background: radial-gradient(circle at top,#ffccdd,#ff99cc);
+  color:white;
+  text-align:center;
+  overflow-x:hidden;
+  padding:20px;
+}
+
+h1{
+  font-size:32px;
+  text-shadow:0 0 15px #ff66aa,0 0 30px #ff99cc;
+}
+
+p{
+  font-size:18px;
+  line-height:1.6;
+  text-align:center;
+  margin:15px auto;
+  max-width:600px;
+}
+
+.kawaii{
+  position:fixed;
+  top:-30px;
+  font-size:24px;
+  animation:fall linear forwards;
+}
+
+@keyframes fall{
+  to{ transform:translateY(110vh); opacity:0; }
+}
+
+.btn{
+  background: linear-gradient(45deg,#ff99cc,#ff66aa);
+  border:none;
+  border-radius:40px;
+  color:white;
+  padding:15px 30px;
+  margin:10px;
+  text-decoration:none;
+  font-size:16px;
+  box-shadow:0 0 10px #ff66aa;
+  cursor:pointer;
+  transition:0.3s;
+}
+.btn:hover{ transform:scale(1.1); }
+
+</style>
 </head>
 <body>
 
-<img src="https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif" class="bg-gif">
+<h1>💖 Lena, c’est pour toi 💖</h1>
 
-<div style="padding:20px; max-width:600px; margin:auto;">
-<h1>ℒєиα 💖</h1>
-<p style="font-family: 'Courier New', monospace; font-size:18px;">
-Ƭσυт ѕє qυє j'αι ρєηѕé συ тє ρєиѕє ѕυя тσι, jє νєυx qυє тυ ѕαϲнє ϲσммє ϲє ѕєяα ѕρє¢ιαℓ.  
-Ƭυ єѕ мση ∂єѕιя, мσи αмσυя, мσи cσєυя.  
-Ƭσυт ѕє qυє jє тє ρєиѕє, jє ρєиѕє α υи ανєиιя нєυяєυх α∂єѕѕυѕ ∂є нσѕ υηє ρєтιтє ρяιѕє.  
-💖💖💖
+<p>
+Hey ma Lena 😘,  
+je voulais pas juste te faire une lettre boring… alors j’ai fait ce site rien que pour toi 💕.<br>
+Chaque chiffre que t’as trouvé, chaque indice, c’est un petit bout de nous 😍.  
+Et là maintenant… voilà ma déclaration finale 💌💖.  
 </p>
-</div>
+
+<p>
+Lena, tu es tellement incroyable 🌸.  
+Ta gentillesse, ton sourire, ta façon de rendre tout plus fun, je l’adore 😍.  
+Je te kiffe trop et je voulais que tu saches que chaque moment avec toi, c’est magique ✨💖.
+</p>
+
+<p>
+T’es la meilleure chose qui me soit arrivée 💕.  
+Merci d’être toi, merci de me faire sourire tous les jours 🐱💌.  
+J’espère que ce petit cadeau digital te fera autant plaisir que moi à le préparer 😘🌷.
+</p>
+
+<p>
+Je t’aime Lena 💖, vraiment fort, et j’espère qu’on continuera à créer plein de souvenirs ensemble 🌸🐰💌.
+</p>
+
+<button class="btn" onclick="window.location.href='index.html'">Retour à l’accueil 💕</button>
+
+<script>
+// Pluie de kawaii
+setInterval(()=>{
+  const symbols=["💖","🌸","🐱","💌","🌷","🐰","✨"];
+  const el=document.createElement("div");
+  el.className="kawaii";
+  el.innerHTML=symbols[Math.floor(Math.random()*symbols.length)];
+  el.style.left=Math.random()*100+"vw";
+  el.style.animationDuration=(4+Math.random()*3)+"s";
+  el.style.fontSize=(16+Math.random()*20)+"px";
+  document.body.appendChild(el);
+  setTimeout(()=>el.remove(),7000);
+},300);
+</script>
 
 </body>
 </html>
