@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Chasse au code ❤️</title>
+<title>Chasse aux indices ❤️</title>
 <link rel="stylesheet" href="style.css">
 <script src="script.js"></script>
 </head>
@@ -12,20 +12,26 @@
 <img src="https://media.giphy.com/media/l41lI4bYmcsPJX9Go/giphy.gif" class="bg-gif">
 
 <h1>Pour ouvrir mon cœur 💖</h1>
-<p>Débloque les indices en trouvant mon fast-food préféré 🍔</p>
+<p>Débloque les indices pour deviner le code 🔐</p>
 
+<!-- MENU CHOIX POUR INDICES -->
 <div style="margin:20px;">
-  <input type="text" id="guess" placeholder="Ton idée ici…">
-  <button class="btn" onclick="checkFood()">Valider</button>
-  <p id="foodStatus"></p>
+  <p>Choisis comment débloquer un indice :</p>
+  <button class="btn" onclick="revealHint('fastfood')">Chercher mon fast-food préféré 🍔</button>
+  <button class="btn" onclick="revealHint('famille')">Deviner mon nom de famille 👨‍👩‍👦</button>
+  <button class="btn" onclick="revealHint('frere')">Deviner le prénom de mon petit frère 👦</button>
+  <button class="btn" onclick="revealHint('secret')">Révéler le code entier 🎯</button>
+  <p id="hintStatus"></p>
 </div>
 
+<!-- Affichage des indices -->
 <div id="indices">
   <p id="indice1">Indice 1 : 🔒</p>
   <p id="indice2">Indice 2 : 🔒</p>
   <p id="indice3">Indice 3 : 🔒</p>
 </div>
 
+<!-- CADENAS -->
 <div class="padlock">🔒</div>
 <div class="code">
   <div class="num" onclick="next(this)">0</div>
@@ -38,37 +44,65 @@
 <p id="status"></p>
 
 <script>
-const codeFinal = "5219"; 
-const fastFood = "tasty crousty";
 let unlocked = 0;
+const codeFinal = "5219"; // Code final
+const hintsUsed = {fastfood:false,famille:false,frere:false};
 
-function checkFood(){
-  const input = document.getElementById("guess").value.toLowerCase().trim();
-  const status = document.getElementById("foodStatus");
-  if(input === fastFood){
-    if(unlocked < 3){
+// Fonction pour débloquer indices
+function revealHint(option){
+  const status = document.getElementById("hintStatus");
+
+  if(option==='fastfood'){
+    const answer = prompt("Quel est mon fast-food préféré ? 🍔").toLowerCase().trim();
+    if(answer==="tasty crousty" && !hintsUsed.fastfood){
+      hintsUsed.fastfood=true;
       unlocked++;
-      status.textContent = `Bravo ! Tu as débloqué l'indice ${unlocked} ❤️`;
-      document.getElementById(`indice${unlocked}`).textContent = getIndice(unlocked);
-      document.getElementById("guess").value = "";
+      document.getElementById(`indice${unlocked}`).textContent="Indice 1 : Fast-food préféré = 5 🍔";
+      status.textContent="Bravo ! Indice débloqué ❤️";
+    } else status.textContent="Essaie encore 😘";
+  }
+
+  if(option==='famille'){
+    const answer = prompt("Quel est mon nom de famille ? 👨‍👩‍👦").toLowerCase().trim();
+    if(answer==="kalomanana" && !hintsUsed.famille){
+      hintsUsed.famille=true;
+      unlocked++;
+      document.getElementById(`indice${unlocked}`).textContent="Indice 2 : Nom de famille = 2 🏷️";
+      status.textContent="Bravo ! Indice débloqué ❤️";
+    } else status.textContent="Essaie encore 😘";
+  }
+
+  if(option==='frere'){
+    const answer = prompt("Comment s'appelle mon petit frère ? 👦").toLowerCase().trim();
+    if(answer==="mathis" && !hintsUsed.frere){
+      hintsUsed.frere=true;
+      unlocked++;
+      document.getElementById(`indice${unlocked}`).textContent="Indice 3 : Prénom frère = 1 🎂";
+      status.textContent="Bravo ! Indice débloqué ❤️";
+    } else status.textContent="Essaie encore 😘";
+  }
+
+  if(option==='secret'){
+    const answer = prompt("Réponds à la question pour obtenir le code entier : Quel jour de la semaine s’est passé notre premier rendez-vous ?").toLowerCase().trim();
+    if(answer==="mardi"){
+      unlocked=3;
+      document.getElementById("indice1").textContent="Indice 1 : 5";
+      document.getElementById("indice2").textContent="Indice 2 : 2";
+      document.getElementById("indice3").textContent="Indice 3 : 1";
+      status.textContent="Code entier débloqué ! 🔓";
+    } else {
+      status.textContent="Non 😘, réfléchis bien !";
     }
-    if(unlocked===3){
-      status.textContent = "Tous les indices sont débloqués ! Devine le code 🔐";
-    }
-  } else {
-    status.textContent = "Essaie encore 😘";
   }
 }
 
-function getIndice(n){
-  switch(n){
-    case 1: return "Ind1 : Fast-food préféré = 5 🍔";
-    case 2: return "Ind2 : Magasin préféré = 2 🛍️";
-    case 3: return "Ind3 : Ta date de naissance = 1/9 🎂";
-    default: return "";
-  }
+// CADENAS
+function next(el){
+  let n=parseInt(el.textContent);
+  el.textContent=(n+1)%10;
 }
 
+// Vérifier code
 function checkCode(){
   const nums=document.querySelectorAll(".num");
   let code="";
