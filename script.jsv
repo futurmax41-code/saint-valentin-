@@ -1,0 +1,35 @@
+// mot de passe
+function checkPassword(){
+  const pass = document.getElementById("password").value.toLowerCase();
+  const status = document.getElementById("status");
+
+  if(pass === "lena"){
+    status.textContent = "Bienvenue mon amour ❤️";
+    status.style.color = "#ff99cc";
+
+    setTimeout(()=>{
+      window.location.href = "sorpresa.html";
+    }, 1000);
+  } else {
+    status.textContent = "Mauvais mot de passe 😢";
+  }
+}
+
+// pluie de coeurs
+setInterval(()=>{
+  const heart = document.createElement("div");
+  heart.className = "heart";
+  heart.innerHTML = "❤️";
+  heart.style.left = Math.random()*100 + "vw";
+  heart.style.animationDuration = (3 + Math.random()*2) + "s";
+  document.body.appendChild(heart);
+  setTimeout(()=>heart.remove(),5000);
+},300);
+
+// musique mobile
+const music = document.getElementById("music");
+if(music){
+  document.body.addEventListener("click", ()=> {
+    music.play().catch(()=>{});
+  });
+}
