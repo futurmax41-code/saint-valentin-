@@ -1,4 +1,4 @@
-/* pluie de coeurs */
+// Pluie de coeurs
 setInterval(()=>{
   const heart=document.createElement("div");
   heart.className="heart";
@@ -9,43 +9,8 @@ setInterval(()=>{
   setTimeout(()=>heart.remove(),5000);
 },300);
 
-/* chiffres cadenas */
+// Chiffres cadenas
 function next(el){
   let n=parseInt(el.textContent);
   el.textContent=(n+1)%10;
-}
-
-/* verifier code */
-function check(){
-  const nums=document.querySelectorAll(".num");
-  let code="";
-  nums.forEach(n=>code+=n.textContent);
-
-  if(code==="0214"){
-    document.querySelector(".padlock").textContent="🔓";
-    document.querySelector(".padlock").classList.add("unlock");
-    document.getElementById("status").textContent="Bienvenue mon amour ❤️";
-
-    setTimeout(()=>{
-      window.location.href="sorpresa.html";
-    },1500);
-  } else {
-    document.getElementById("status").textContent="Encore un effort 😘";
-  }
-}
-
-/* sons photos */
-function playSound(id){
-  document.querySelectorAll("audio").forEach(a=>{
-    a.pause(); a.currentTime=0;
-  });
-  document.getElementById(id).play();
-}
-
-/* musique */
-const music=document.getElementById("music");
-if(music){
-  document.body.addEventListener("click",()=>{
-    music.play().catch(()=>{});
-  });
 }
