@@ -3,15 +3,30 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cadenas ❤️</title>
+<title>Chasse au code ❤️</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body class="center">
 
-<h1>Déverrouille mon cœur 🔐</h1>
+<h1>Pour ouvrir mon cœur 💖</h1>
+<p>Tu as 3 indices à débloquer… mais pour chaque indice, devine mon fast-food préféré 🍔</p>
 
+<!-- JEUX FAST-FOOD -->
+<div style="margin:20px; text-align:center;">
+  <input type="text" id="guess" placeholder="Tape ton idée ici…">
+  <button class="btn" onclick="checkFood()">Valider</button>
+  <p id="foodStatus"></p>
+</div>
+
+<!-- INDICES -->
+<div id="indices" style="margin:20px; color:#ff99cc; text-align:center;">
+  <p id="indice1">Indice 1 : 🔒</p>
+  <p id="indice2">Indice 2 : 🔒</p>
+  <p id="indice3">Indice 3 : 🔒</p>
+</div>
+
+<!-- CADENAS -->
 <div class="padlock">🔒</div>
-
 <div class="code">
   <div class="num" onclick="next(this)">0</div>
   <div class="num" onclick="next(this)">0</div>
@@ -19,9 +34,70 @@
   <div class="num" onclick="next(this)">0</div>
 </div>
 
-<button class="btn" onclick="check()">Ouvrir 💕</button>
+<button class="btn" onclick="checkCode()">Vérifier 💕</button>
 <p id="status"></p>
 
-<script src="script.js"></script>
+<script>
+// CODE FINAL
+const codeFinal = "5219";
+
+// FAST-FOOD
+const fastFood = "tasty crousty";
+let unlocked = 0;
+
+// CHIFFRES CADENAS
+function next(el){
+  let n = parseInt(el.textContent);
+  el.textContent = (n+1)%10;
+}
+
+// VERIFIER LE NOM DU FAST-FOOD
+function checkFood(){
+  const input = document.getElementById("guess").value.toLowerCase().trim();
+  const status = document.getElementById("foodStatus");
+  if(input === fastFood){
+    if(unlocked < 3){
+      unlocked++;
+      status.textContent = `Bravo ! Tu as débloqué l'indice ${unlocked} ❤️`;
+      document.getElementById(`indice${unlocked}`).textContent = getIndice(unlocked);
+      document.getElementById("guess").value = "";
+    }
+    if(unlocked===3){
+      status.textContent = "Tous les indices sont débloqués ! Tu peux maintenant deviner le code 🔐";
+    }
+  } else {
+    status.textContent = "Essaie encore 😘";
+  }
+}
+
+// LES INDICES QUI DONNENT LE CODE
+function getIndice(n){
+  switch(n){
+    case 1: return "Indice 1 : Ton fast-food préféré = 5 🍔";
+    case 2: return "Indice 2 : Son magasin préféré = 2 🛍️";
+    case 3: return "Indice 3 : Ta date de naissance = 1/9 🎂";
+    default: return "";
+  }
+}
+
+// VERIFIER LE CADENAS
+function checkCode(){
+  const nums=document.querySelectorAll(".num");
+  let code="";
+  nums.forEach(n=>code+=n.textContent);
+  const status=document.getElementById("status");
+  if(code===codeFinal){
+    status.textContent="Bravo ! Cadenas ouvert ❤️";
+    status.style.color="#ff99cc";
+    document.querySelector(".padlock").textContent="🔓";
+    document.querySelector(".padlock").classList.add("unlock");
+    setTimeout(()=>{window.location.href="sorpresa.html"},1500);
+  } else {
+    status.textContent="Essaie encore 😘";
+    status.style.color="white";
+  }
+}
+</script>
+
 </body>
 </html>
