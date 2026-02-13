@@ -3,34 +3,44 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cadenas d'amour 🔐</title>
+  <title>Cadenas d’amour 🔐</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body class="center">
 
-  <h1>Déverrouille le cadenas 🔐</h1>
-  <p>Entre les 4 chiffres pour découvrir la surprise ❤️</p>
+  <h1>Déverrouille mon cœur 🔐❤️</h1>
+  <p>Clique sur les chiffres pour trouver la combinaison</p>
 
-  <!-- CADENA -->
-  <div class="lock">
-    <input maxlength="1" class="digit">
-    <input maxlength="1" class="digit">
-    <input maxlength="1" class="digit">
-    <input maxlength="1" class="digit">
+  <!-- DESSIN CADENAS -->
+  <div class="padlock">
+    🔒
   </div>
 
-  <button id="unlock" class="btn main">Ouvrir 💕</button>
+  <!-- CHIFFRES -->
+  <div class="code">
+    <div class="num" onclick="next(this)">0</div>
+    <div class="num" onclick="next(this)">0</div>
+    <div class="num" onclick="next(this)">0</div>
+    <div class="num" onclick="next(this)">0</div>
+  </div>
+
+  <button class="btn main" onclick="check()">Ouvrir 💕</button>
 
   <p id="status"></p>
 
 <script>
-document.getElementById("unlock").addEventListener("click", function(){
+const correct = "0214"; // ← change ici si tu veux
 
-  const digits = document.querySelectorAll(".digit");
+function next(el){
+  let n = parseInt(el.textContent);
+  n = (n + 1) % 10;
+  el.textContent = n;
+}
+
+function check(){
+  const nums = document.querySelectorAll(".num");
   let code = "";
-  digits.forEach(d => code += d.value);
-
-  const correct = "0214"; // ← change si tu veux
+  nums.forEach(n => code += n.textContent);
 
   const status = document.getElementById("status");
 
@@ -38,19 +48,19 @@ document.getElementById("unlock").addEventListener("click", function(){
     status.textContent = "Cadenas ouvert mon amour ❤️";
     status.style.color = "#ff99cc";
 
-    // petite animation
-    document.querySelector(".lock").classList.add("open");
+    // animation cadenas
+    document.querySelector(".padlock").textContent = "🔓";
+    document.querySelector(".padlock").classList.add("unlock");
 
     setTimeout(()=>{
       window.location.href = "sorpresa.html";
     }, 1500);
 
   } else {
-    status.textContent = "Essaie encore 😘";
+    status.textContent = "Encore un petit effort 😘";
     status.style.color = "white";
   }
-
-});
+}
 </script>
 
 </body>
